@@ -12,16 +12,16 @@ import pages.PatternsPage;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class vikisewsTests extends TestBase {
+public class VikisewsTests extends TestBase {
     MainPage mainPage = new MainPage();
     PatternsPage patternsPage = new PatternsPage();
     CartPage cartPage = new CartPage();
     CoursePage coursePage = new CoursePage();
 
-    @DisplayName("Проверка левого меню")
     @ValueSource (strings = {
             "Выкройки", "Курсы", "Сертификаты", "Блог", "Отзывы"
     })
+    @DisplayName("Проверка левого меню")
     @ParameterizedTest(name= "Проверяет, что по кнопке {0} в левом меню открывается страница с заголовком {0}")
     void checkMenuTest(String buttonAndHeaderName) {
         mainPage.openPage()
@@ -30,7 +30,6 @@ public class vikisewsTests extends TestBase {
 
     }
 
-    @DisplayName("Проверка добавления выкройки определенного размера в корзину")
     @CsvSource (value = {
             "154-160, 38",
             "162-168, 44",
@@ -39,6 +38,7 @@ public class vikisewsTests extends TestBase {
             "154-160, 34",
             "178-184, 52"
     })
+    @DisplayName("Проверка добавления выкройки определенного размера в корзину")
     @ParameterizedTest(name= "Проверяет, что в корзине выкройка на рост {0} и размером {1}")
     void sizeAndGrowthInCartShouldMatchWithChosenInCard(String growth, String size) {
         patternsPage.openPage()
@@ -54,7 +54,6 @@ public class vikisewsTests extends TestBase {
                 .clearCart();
     }
 
-    @DisplayName("Проверка соответствия страниц названию")
 
     static Stream<Arguments> cardsOfItemsShouldMatchPage() {
         return Stream.of(
@@ -63,6 +62,7 @@ public class vikisewsTests extends TestBase {
         );
     }
     @MethodSource
+    @DisplayName("Проверка соответствия страниц названию")
     @ParameterizedTest
     void cardsOfItemsShouldMatchPage(String pageName, List<String> expectedCards) {
         mainPage.openPage()

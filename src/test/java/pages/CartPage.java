@@ -35,7 +35,7 @@ public class CartPage {
 
     public CartPage clearCart() {
         clearCartButton.click();
-        sleep(1000);
+        sleep(2000);
         return this;
     }
 
